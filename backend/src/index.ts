@@ -46,9 +46,23 @@ app.post("/template", async (req, res) => {
     return;
   }
 
-  res.status(403).json({ message: "You cant access this" });
+  res.status(403).json({ message: "You can't access this" });
   return;
 });
 
+app.post("/chat", async (req, res) => {
+  const messages = req.body.messages;
+  const response = await anthropic.messages.create({
+    messages: messages,
+    model: "claude-3-7-sonnet-20250219",
+    max_tokens: 200,
+    system: getSystemPrompt(),
+  });
 
-app.listen(3000);
+  console.log(response);
+
+  res.json({});
+});
+
+app.listen(3000); 
+
