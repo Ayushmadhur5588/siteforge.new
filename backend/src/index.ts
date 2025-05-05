@@ -59,8 +59,6 @@ app.post("/chat", async (req, res) => {
     system: getSystemPrompt(),
   });
 
-  console.log(response);
-
   res.json({});
 });
 
